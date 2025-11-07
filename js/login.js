@@ -1,9 +1,28 @@
-// Wait for the DOM to fully load before running code
-document.addEventListener('DOMContentLoaded', function() {
-    
-    let isSignUp = true;
+// Demo accounts (hardcoded)
+const DEMO_ACCOUNTS = {
+    'user@example.com': {
+        password: 'password',
+        role: 'user',
+        name: 'Demo User',
+        redirect: 'user-profile.html'
+    },
+    'agent@example.com': {
+        password: 'password',
+        role: 'agent',
+        name: 'Demo Agent',
+        redirect: 'agent-dashboard.html'
+    },
+    'admin@example.com': {
+        password: 'password',
+        role: 'admin',
+        name: 'Demo Admin',
+        redirect: 'admin-dashboard.html'
+    }
+};
 
-    // Get all the elements we need
+let isSignUp = false;
+
+document.addEventListener('DOMContentLoaded', function() {
     const toggleBtn = document.getElementById('toggleBtn');
     const promoTitle = document.getElementById('promoTitle');
     const promoText = document.getElementById('promoText');
@@ -11,19 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const signupForm = document.getElementById('signupForm');
     const signinForm = document.getElementById('signinForm');
 
-    // Add click event listener to toggle button
-    toggleBtn.addEventListener('click', toggleForm);
-
-    // Add submit event listeners to forms
-    signupForm.addEventListener('submit', handleSignUp);
-    signinForm.addEventListener('submit', handleSignIn);
-
-    // Toggle between Sign Up and Sign In
-    function toggleForm() {
+    // Toggle between Sign In and Sign Up
+    toggleBtn.addEventListener('click', function() {
         isSignUp = !isSignUp;
         
         if (isSignUp) {
-            // Switch to Sign Up
             promoTitle.textContent = 'ALREADY HAVE AN ACCOUNT?';
             promoText.textContent = 'Sign in to our account and enjoy your service with Hoyo Piloting service';
             toggleBtn.textContent = 'Sign In';
@@ -31,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
             signupForm.classList.add('active');
             signinForm.classList.remove('active');
         } else {
-            // Switch to Sign In
             promoTitle.textContent = 'NEED AN ACCOUNT?';
             promoText.textContent = 'Sign up an account and enjoy the services';
             toggleBtn.textContent = 'Create New Account';
@@ -39,53 +49,82 @@ document.addEventListener('DOMContentLoaded', function() {
             signupForm.classList.remove('active');
             signinForm.classList.add('active');
         }
-    }
+    });
 
-    // Handle Sign Up form submission
-    function handleSignUp(e) {
-        e.preventDefault(); // Prevent form from actually submitting
+    // Handle Sign In
+    signinForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        // Get form values
-        const name = signupForm.querySelector('input[type="text"]').value;
-        const email = signupForm.querySelectorAll('input[type="email"]')[0].value;
-        const phone = signupForm.querySelector('input[type="tel"]').value;
+        const email = signinForm.querySelector('input[type="email"]').value.trim();
+        const password = signinForm.querySelector('input[type="password"]').value;
+
+        // Check if account exists
+        if (DEMO_ACCOUNTS[email]) {
+            if (DEMO_ACCOUNTS[email].password === password) {
+                // Successful login
+                const user = DEMO_ACCOUNTS[email];
+                
+                // Store user info in localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userRole', user.role);
+                localStorage.setItem('userName', user.name);
+                localStorage.setItem('userEmail', email);
+
+                // Show success and redirect
+                window.location.href = user.redirect;
+            } else {
+                // Wrong password
+                alert('Incorrect password!');
+            }
+        } else {
+            // Account not found
+            alert('Account not found! Use demo accounts:\nuser@example.com\nagent@example.com\nadmin@example.com\nPassword: password');
+        }
+    });
+
+    // Handle Sign Up
+    signupForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = signupForm.querySelector('input[type="text"]').value.trim();
+        const email = signupForm.querySelector('input[type="email"]').value.trim();
         const password = signupForm.querySelectorAll('input[type="password"]')[0].value;
         const confirmPassword = signupForm.querySelectorAll('input[type="password"]')[1].value;
 
-        // Basic validation
+        // Validate
         if (password !== confirmPassword) {
             alert('Passwords do not match!');
             return;
         }
 
-        // TODO: Connect to your backend here
-        console.log('Sign Up Data:', { name, email, phone, password });
-        alert('Sign Up functionality - connect to your backend');
-    }
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters!');
+            return;
+        }
 
-    // Handle Sign In form submission
-    function handleSignIn(e) {
-        e.preventDefault(); // Prevent form from actually submitting
-        
-        // Get form values
-        const email = signinForm.querySelector('input[type="email"]').value;
-        const password = signinForm.querySelector('input[type="password"]').value;
+        // Store new user in localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userRole', 'user');
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
 
-        // TODO: Connect to your backend here
-        console.log('Sign In Data:', { email, password });
-        alert('Sign In functionality - connect to your backend');
-    }
-
-    // Form validation styling
-    document.querySelectorAll('input').forEach(input => {
-        input.addEventListener('invalid', function(e) {
-            e.preventDefault();
-            this.style.boxShadow = '0 0 0 3px rgba(255, 0, 0, 0.3)';
-        });
-        
-        input.addEventListener('input', function() {
-            this.style.boxShadow = '';
-        });
+        // Show success and redirect
+        alert(`Account created successfully! Welcome, ${name}!`);
+        window.location.href = 'user-profile.html';
     });
 
+    // Check if already logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userRole = localStorage.getItem('userRole');
+
+    if (isLoggedIn === 'true') {
+        // Already logged in, redirect to appropriate page
+        if (userRole === 'admin') {
+            window.location.href = 'admin-dashboard.html';
+        } else if (userRole === 'agent') {
+            window.location.href = 'agent-dashboard.html';
+        } else {
+            window.location.href = 'user-profile.html';
+        }
+    }
 });
