@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             status: 'completed',
             amount: '₱250.00',
             details: {
-                description: 'Level 45 to 60 Adventure Rank boost',
+                description: 'Complete Spiral Abyss Floor 11 to 12',
                 startDate: '2025-10-15',
                 completionDate: '2025-10-20',
                 pilot: 'Darkbeam'
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             status: 'pending',
             amount: '₱250.00',
             details: {
-                description: 'Farm materials for character ascension',
+                description: 'Account maintenance for a week',
                 startDate: 'Pending confirmation',
                 estimatedDuration: '3-5 days',
                 pilot: 'To be assigned'
