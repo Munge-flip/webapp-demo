@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize user data from localStorage or defaults
     let userData = JSON.parse(localStorage.getItem('hoyoUserData')) || {
-        username: 'U***nh',
-        email: 'gg******2@ssct.edu.ph',
-        mobile: '999****99',
+        username: 'JustJinxx',
+        email: 'ggonzales2@ssct.edu.ph',
+        mobile: '09197311795',
         password: 'password123', // In real app, this would be hashed
         passwordLastUpdated: '07/10/2025'
     };
