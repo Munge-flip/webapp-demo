@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ? JSON.parse(localStorage.getItem('hoyoAgentData'))
         : {
             username: 'Reyeal',  // ← CHANGE THIS to whatever you want
-            email: 'reyeal@hoyopiloting.com',  // ← CHANGE THIS
+            email: 'rere@example.com',  // ← CHANGE THIS
             mobile: '09123456789',  // ← CHANGE THIS
             password: 'agent123',
             passwordLastUpdated: '11/12/2025'
