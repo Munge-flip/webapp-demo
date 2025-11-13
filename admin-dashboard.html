@@ -11,6 +11,7 @@
 </head>
 <body>
     <script src="js/auth-check.js"></script>
+    
     <!-- Header Navigation -->
     <header>
         <nav>
@@ -79,11 +80,10 @@
                         </div>
                         <div class="stat-info">
                             <h3>Total Orders</h3>
-                            <p class="stat-number">47</p>
-                            <span class="stat-trend up">+12% from last month</span>
+                            <p class="stat-number" id="totalOrders">0</p>
+                            <span class="stat-trend up">All orders in system</span>
                         </div>
                     </div>
-
                     <div class="stat-card">
                         <div class="stat-icon agents-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -95,11 +95,10 @@
                         </div>
                         <div class="stat-info">
                             <h3>Active Agents</h3>
-                            <p class="stat-number">3</p>
-                            <span class="stat-trend">6 orders in progress</span>
+                            <p class="stat-number" id="totalAgents">0</p>
+                            <span class="stat-trend" id="activeOrders">0 orders in progress</span>
                         </div>
                     </div>
-
                     <div class="stat-card">
                         <div class="stat-icon users-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -109,11 +108,10 @@
                         </div>
                         <div class="stat-info">
                             <h3>Total Users</h3>
-                            <p class="stat-number">124</p>
-                            <span class="stat-trend up">+8 this week</span>
+                            <p class="stat-number" id="totalUsers">0</p>
+                            <span class="stat-trend">Registered customers</span>
                         </div>
                     </div>
-
                     <div class="stat-card">
                         <div class="stat-icon revenue-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -123,8 +121,8 @@
                         </div>
                         <div class="stat-info">
                             <h3>Revenue</h3>
-                            <p class="stat-number">₱18,450</p>
-                            <span class="stat-trend up">+24% from last month</span>
+                            <p class="stat-number" id="totalRevenue">₱0</p>
+                            <span class="stat-trend up">From completed orders</span>
                         </div>
                     </div>
                 </div>
@@ -132,26 +130,12 @@
                 <!-- Recent Activity -->
                 <div class="activity-section">
                     <h2>Recent Activity</h2>
-                    <div class="activity-list">
+                    <div class="activity-list" id="activityList">
                         <div class="activity-item">
-                            <div class="activity-icon">📦</div>
+                            <div class="activity-icon">📊</div>
                             <div class="activity-content">
-                                <p><strong>New order #1234</strong> - Genshin Impact Exploration</p>
-                                <span class="activity-time">5 minutes ago</span>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon">✅</div>
-                            <div class="activity-content">
-                                <p><strong>Order #1021 completed</strong> by Agent 1</p>
-                                <span class="activity-time">1 hour ago</span>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-icon">👤</div>
-                            <div class="activity-content">
-                                <p><strong>New user registered</strong> - reyeah23</p>
-                                <span class="activity-time">3 hours ago</span>
+                                <p><strong>Dashboard Loaded</strong> - Ready to manage</p>
+                                <span class="activity-time">Just now</span>
                             </div>
                         </div>
                     </div>
@@ -162,9 +146,8 @@
             <div id="orders-section" class="content-section">
                 <div class="section-header">
                     <h1>All Orders</h1>
-                    <input type="text" placeholder="Search orders..." class="search-input">
+                    <input type="text" placeholder="Search orders..." class="search-input" id="searchOrders">
                 </div>
-
                 <div class="table-container">
                     <table class="data-table">
                         <thead>
@@ -175,63 +158,12 @@
                                 <th>User</th>
                                 <th>Agent</th>
                                 <th>Status</th>
-                                <th>Date</th>
+                                <th>Amount</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#1234</td>
-                                <td>Genshin Impact</td>
-                                <td>Exploration</td>
-                                <td>U***nh</td>
-                                <td>DarkBeam</td>
-                                <td><span class="badge in-progress">In Progress</span></td>
-                                <td>Oct 5</td>
-                                <td>
-                                    <button class="action-link">View</button>
-                                    <button class="action-link delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#1233</td>
-                                <td>Honkai Star Rail</td>
-                                <td>Memory of Chaos</td>
-                                <td>U***nh</td>
-                                <td>DarkBeam</td>
-                                <td><span class="badge in-progress">In Progress</span></td>
-                                <td>Oct 4</td>
-                                <td>
-                                    <button class="action-link">View</button>
-                                    <button class="action-link delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#1232</td>
-                                <td>Zenless Zone Zero</td>
-                                <td>Events</td>
-                                <td>R***23</td>
-                                <td>Unassigned</td>
-                                <td><span class="badge pending">Pending</span></td>
-                                <td>Oct 3</td>
-                                <td>
-                                    <button class="action-link primary">Assign</button>
-                                    <button class="action-link delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#1021</td>
-                                <td>Honkai Star Rail</td>
-                                <td>Memory of Chaos</td>
-                                <td>J***xx</td>
-                                <td>Jinxx</td>
-                                <td><span class="badge completed">Completed</span></td>
-                                <td>Oct 1</td>
-                                <td>
-                                    <button class="action-link">View</button>
-                                    <button class="action-link delete">Delete</button>
-                                </td>
-                            </tr>
+                        <tbody id="ordersTableBody">
+                            <!-- Orders will be dynamically inserted -->
                         </tbody>
                     </table>
                 </div>
@@ -249,103 +181,8 @@
                         Add Agent
                     </button>
                 </div>
-
-                <div class="agents-grid">
-                    <!-- Agent Card 1 -->
-                    <div class="agent-card">
-                        <div class="agent-header">
-                            <div class="agent-avatar">DB</div>
-                            <div class="agent-info">
-                                <h3>DarkBeam</h3>
-                                <p class="agent-id">ID: #1234</p>
-                            </div>
-                            <div class="agent-stats">
-                                <span class="stat-badge">3 active</span>
-                            </div>
-                        </div>
-                        <div class="agent-details">
-                            <div class="detail-item">
-                                <span>Orders Handling:</span>
-                                <strong>3</strong>
-                            </div>
-                            <div class="detail-item">
-                                <span>Completion Rate:</span>
-                                <strong>1/3</strong>
-                            </div>
-                            <div class="detail-item">
-                                <span>Status:</span>
-                                <span class="badge in-progress">Active</span>
-                            </div>
-                        </div>
-                        <div class="agent-actions">
-                            <button class="btn-secondary">View Orders</button>
-                            <button class="btn-danger">Remove</button>
-                        </div>
-                    </div>
-
-                    <!-- Agent Card 2 -->
-                    <div class="agent-card">
-                        <div class="agent-header">
-                            <div class="agent-avatar">CL</div>
-                            <div class="agent-info">
-                                <h3>Cola</h3>
-                                <p class="agent-id">ID: #9813</p>
-                            </div>
-                            <div class="agent-stats">
-                                <span class="stat-badge">1 active</span>
-                            </div>
-                        </div>
-                        <div class="agent-details">
-                            <div class="detail-item">
-                                <span>Orders Handling:</span>
-                                <strong>1</strong>
-                            </div>
-                            <div class="detail-item">
-                                <span>Completion Rate:</span>
-                                <strong>0/1</strong>
-                            </div>
-                            <div class="detail-item">
-                                <span>Status:</span>
-                                <span class="badge in-progress">Active</span>
-                            </div>
-                        </div>
-                        <div class="agent-actions">
-                            <button class="btn-secondary">View Orders</button>
-                            <button class="btn-danger">Remove</button>
-                        </div>
-                    </div>
-
-                    <!-- Agent Card 3 -->
-                    <div class="agent-card">
-                        <div class="agent-header">
-                            <div class="agent-avatar">JX</div>
-                            <div class="agent-info">
-                                <h3>Jinxx</h3>
-                                <p class="agent-id">ID: #5412</p>
-                            </div>
-                            <div class="agent-stats">
-                                <span class="stat-badge">2 active</span>
-                            </div>
-                        </div>
-                        <div class="agent-details">
-                            <div class="detail-item">
-                                <span>Orders Handling:</span>
-                                <strong>2</strong>
-                            </div>
-                            <div class="detail-item">
-                                <span>Completion Rate:</span>
-                                <strong>0/2</strong>
-                            </div>
-                            <div class="detail-item">
-                                <span>Status:</span>
-                                <span class="badge in-progress">Active</span>
-                            </div>
-                        </div>
-                        <div class="agent-actions">
-                            <button class="btn-secondary">View Orders</button>
-                            <button class="btn-danger">Remove</button>
-                        </div>
-                    </div>
+                <div class="agents-grid" id="agentsGrid">
+                    <!-- Agent cards will be dynamically inserted -->
                 </div>
             </div>
 
@@ -353,66 +190,21 @@
             <div id="users-section" class="content-section">
                 <div class="section-header">
                     <h1>Users Management</h1>
-                    <input type="text" placeholder="Search users..." class="search-input">
+                    <input type="text" placeholder="Search users..." class="search-input" id="searchUsers">
                 </div>
-
                 <div class="table-container">
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Username</th>
                                 <th>Email</th>
+                                <th>Mobile</th>
                                 <th>Date Created</th>
-                                <th>Last Login</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#1</td>
-                                <td>reyeah23</td>
-                                <td>ggonzalesa@ssct.edu.ph</td>
-                                <td>09/01/2025</td>
-                                <td>09/10/2025</td>
-                                <td>
-                                    <button class="action-link">Edit</button>
-                                    <button class="action-link delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#2</td>
-                                <td>darkbeam99</td>
-                                <td>darkbeam@ssct.edu.ph</td>
-                                <td>09/02/2025</td>
-                                <td>09/10/2025</td>
-                                <td>
-                                    <button class="action-link">Edit</button>
-                                    <button class="action-link delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#3</td>
-                                <td>jinxxgamer</td>
-                                <td>jinxx@ssct.edu.ph</td>
-                                <td>09/03/2025</td>
-                                <td>09/09/2025</td>
-                                <td>
-                                    <button class="action-link">Edit</button>
-                                    <button class="action-link delete">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#4</td>
-                                <td>colagaming</td>
-                                <td>cola@ssct.edu.ph</td>
-                                <td>09/04/2025</td>
-                                <td>09/08/2025</td>
-                                <td>
-                                    <button class="action-link">Edit</button>
-                                    <button class="action-link delete">Delete</button>
-                                </td>
-                            </tr>
+                        <tbody id="usersTableBody">
+                            <!-- Users will be dynamically inserted -->
                         </tbody>
                     </table>
                 </div>
@@ -425,7 +217,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Add New Agent</h2>
-                <button class="close-modal">&times;</button>
+                <button class="close-modal" data-modal="addAgentModal">×</button>
             </div>
             <form id="addAgentForm" class="modal-form">
                 <div class="form-group">
@@ -433,25 +225,103 @@
                     <input type="text" id="agentName" required>
                 </div>
                 <div class="form-group">
-                    <label>Agent ID</label>
-                    <input type="text" id="agentId" placeholder="#0000" required>
-                </div>
-                <div class="form-group">
                     <label>Email</label>
                     <input type="email" id="agentEmail" required>
                 </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="agentPassword" required minlength="6">
+                </div>
                 <div class="modal-actions">
-                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="button" class="btn-secondary" data-modal="addAgentModal">Cancel</button>
                     <button type="submit" class="btn-primary">Add Agent</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <!-- View Order Modal -->
+    <div id="viewOrderModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Order Details</h2>
+                <button class="close-modal" data-modal="viewOrderModal">×</button>
+            </div>
+            <div class="modal-body" id="orderDetailsContent">
+                <!-- Order details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Assign Agent Modal -->
+    <div id="assignAgentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Assign Agent</h2>
+                <button class="close-modal" data-modal="assignAgentModal">×</button>
+            </div>
+            <form id="assignAgentForm" class="modal-form">
+                <input type="hidden" id="assignOrderId">
+                <div class="form-group">
+                    <label>Select Agent</label>
+                    <select id="assignAgentSelect" required>
+                        <option value="">Choose an agent...</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="assignAgentModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Assign</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit User</h2>
+                <button class="close-modal" data-modal="editUserModal">×</button>
+            </div>
+            <form id="editUserForm" class="modal-form">
+                <input type="hidden" id="editUserId">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="editUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="editUserEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Mobile</label>
+                    <input type="tel" id="editUserMobile" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="editUserModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Agent Orders Modal -->
+    <div id="viewAgentOrdersModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Agent Orders</h2>
+                <button class="close-modal" data-modal="viewAgentOrdersModal">×</button>
+            </div>
+            <div class="modal-body" id="agentOrdersContent">
+                <!-- Agent orders will be inserted here -->
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>2025 Copyright. All rights reserved.</p>
     </footer>
-
+    
     <script src="js/admin-dashboard.js"></script>
 </body>
 </html>
